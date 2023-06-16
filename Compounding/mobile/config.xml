@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.example.PharmacyApp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>PharmacyApp</name>
+    <description>Compounding Pharmacy App</description>
+    <author email="Cstrachan3544@conestogac.on.ca" href="https://cordova.apache.org">
+        Chad Strachan
+    </author>
+    <content src="index.html" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <icon src="www/assets/basketIcon.png"/>
+    <splash src="www/assets/pharmacyIcon.png"/>
+</widget>

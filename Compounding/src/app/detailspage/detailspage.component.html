@@ -1,0 +1,104 @@
+<div class="container">
+  <div *ngIf="errorMsg!=''; else showForm">
+    <h3>{{errorMsg}}</h3>
+  </div>
+
+  <ng-template #showForm>
+    <div class="card">
+      <div class="card-header text-center">
+        <h1>Enter your Prescription Details</h1>
+      </div>
+      <div class="card-body">
+        <form #cstrachan="ngForm">
+          <div class="mb-3">
+            <label for="txtMedication" class="form-label">Name of Medication:</label>
+            <input id="txtMedication" name="txtMedication"
+                   type="text" class="form-control"
+                   [(ngModel)]="prescription.medication"
+                   #txtMedication="ngModel"
+                   required minlength="4"
+            >
+            <div *ngIf="txtMedication.invalid && (txtMedication.touched || txtMedication.dirty)">
+              <small *ngIf="txtMedication.errors && txtMedication.errors['required']"
+                     class="text-danger">
+                Name of Medication is required
+              </small>
+
+              <small *ngIf="txtMedication.errors && txtMedication.errors['minlength']"
+                     class="text-danger">
+                Medication name must be at least 4 characters long
+              </small>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="numDose" class="form-label">Dosage of Medication (in mg)</label>
+            <input id="numDose" name="numDose"
+                   type="number" class="form-control"
+                   [(ngModel)]="prescription.dose"
+                   #numDose="ngModel"
+                   required
+                   min="1">
+
+            <div *ngIf="numDose.invalid && (numDose.touched || numDose.dirty)">
+              <small *ngIf="numDose.errors && numDose.errors['required']" class="text-danger">
+                Dose is required
+              </small>
+              <small *ngIf="numDose.errors && numDose.errors['min']" class="text-danger">
+                Dose must be at least 1 mg
+              </small>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Are you Allergic to Lactose?</label><br>
+            <input type="radio" name="lactoseAllergy" value="true">Yes <br>
+            <input type="radio" name="lactoseAllergy" value="false">No
+
+          </div>
+
+          <div class="mb-3">
+            <label>Additional Comments</label> <br>
+            <input type="text" id="txtComment" name="txtComment" class="form-control" [(ngModel)]="prescription.comments">
+          </div>
+
+          <button class="btn btn-primary" [disabled]="cstrachan.invalid"
+                  type="button"
+                  (click)="btnUpdate_click()">
+            Update
+          </button> <br>
+          <button id="btnCapturePhoto" name="btnCapturePhoto" class="btn btn-secondary" type="button"
+                  (click)="btnCapturePhoto_click()">
+            Take a Picture</button>
+
+          <br>
+          <button id="btnLoanPhoto" name="btnLoadPhoto"
+                  class="btn btn-secondary" type="button"
+                  (click)="btnLoadFromLibrary_click()">
+            Upload a Picture</button>
+          <br> <br>
+
+          <div>
+            <label for="txtCWeight" class="form-label">Medication Weight (in g):</label>
+            <input id="txtCWeight" name="txtCWeight"
+                   class="form-control" type="text" [disabled]="!!cstrachan.valid"
+                   [(ngModel)]="prescription.medWeight"
+                   #txtCWeight="ngModel">
+
+            <label for="txtCLactose" class="form-label">Lactose Weight (in g):</label>
+            <input id="txtCLactose" name="txtCLactose"
+                   type="text" class="form-control" [disabled]="!!cstrachan.valid"
+                   [(ngModel)]="prescription.lacWeight"
+                   #txtCLactose="ngModel">
+
+            <label for="txtCFlour" class="form-label">Millet Flour Weight (in g):</label>
+            <input id="txtCFlour" name="txtCFlour"
+                   type="text" class="form-control" [disabled]="!!cstrachan.valid"
+                   [(ngModel)]="prescription.flrWeight"
+                   #txtCFlour="ngModel">
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+</div>

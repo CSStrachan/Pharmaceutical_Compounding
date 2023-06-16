@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header text-center">
+      <h1>List of Prescriptions</h1>
+    </div>
+    <div class="card-body">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of prescription">
+          <button class="btn btn-primary btn-sm me-3" (click)="btnModify_click(item)" style="float: right">Modify</button>
+          <button class="btn btn-primary btn-sm me-3" (click)="btnDelete_click(item)" style="float: right">Delete</button>
+
+          <p>{{item.medication}}</p>
+          <span class="badge bg-secondary" style="float: left">
+          {{item.dose}}<p>mg</p>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
